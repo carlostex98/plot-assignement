@@ -10,7 +10,7 @@ cc[,3] <- as.numeric(cc[,3])
 hist(cc$Global_active_power, xlab = "Global active power (kilowatts)", main = "Global active power")
 
 
-
+rm(list = ls())
 
 
 ##second plot
@@ -38,13 +38,15 @@ legend("topright", pch = "-", col = c("black","blue", "red"), legend = c("Sub_me
 
 
 ##fourth plot
-par(mfrow=c(2,2))
+
 cx <- data_x[data_x$Date >= '2007-02-01'&data_x$Date <= '2007-02-02',]
 cx[,1] <- as.Date(cc[,1], "%m/%d/%Y")
 cx[,3] <- as.numeric(cx[,3])
 cx[,7] <- as.numeric(cx[,7])
 cx[,8] <- as.numeric(cx[,8])
 cx[,9] <- as.numeric(cx[,9])
+
+par(mfrow=c(2,2))
 
 plot(as.POSIXct(paste(cx$Date, cx$Time),format="%Y-%m-%d %H:%M:%S"), 
      cx$Global_active_power, type = "l", xlab = "", ylab = "Global active power" )
@@ -58,7 +60,7 @@ lines(as.POSIXct(paste(cx$Date, cx$Time),format="%Y-%m-%d %H:%M:%S"), cx$Sub_met
 legend("topright", pch = "-", col = c("black","blue", "red"), legend = c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"))
 
 plot(as.POSIXct(paste(cx$Date, cx$Time),format="%Y-%m-%d %H:%M:%S"), 
-     cx$Voltage, type = "l", xlab = "", ylab = "Voltage" )
+     cx$Global_reactive_power, type = "l", xlab = "", ylab = "Global_reactive_power" )
 
 
 
